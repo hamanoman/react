@@ -1,0 +1,3 @@
+React
+・styleはキャメルケース記述
+・class -> className

@@ -1,3 +1,9 @@
 React
 ・styleはキャメルケース記述
 ・class -> className
+
+・ページ遷移
+ →React Router
+
+・routerで404
+ →https://blog.mismithportfolio.com/web/reactrouter-cannnotget

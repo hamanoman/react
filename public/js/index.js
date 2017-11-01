@@ -26687,17 +26687,24 @@ var Index = _react2.default.createClass({
   }
 });
 
-var Detail = function Detail() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h2',
-      null,
-      'Detail'
-    )
-  );
-};
+var Detail = _react2.default.createClass({
+  displayName: 'Detail',
+
+  render: function render() {
+    console.log(Index);
+    return _react2.default.createElement(
+      'div',
+      { id: 'wrapper' },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Detail'
+      ),
+      _react2.default.createElement(_footer2.default, null),
+      _react2.default.createElement(_pagebottom2.default, null)
+    );
+  }
+});
 
 var Root = function Root() {
   return _react2.default.createElement(
@@ -27059,82 +27066,85 @@ module.exports = Main;
 "use strict";
 
 
+var _reactRouterDom = __webpack_require__(102);
+
 var React = __webpack_require__(8);
 
+
 var PostItem = React.createClass({
-  displayName: 'PostItem',
+	displayName: 'PostItem',
 
-  render: function render() {
-    var postList = [];
-    var jsonData = this.props.jsonData;
+	render: function render() {
+		var postList = [];
+		var jsonData = this.props.jsonData;
 
-    for (var i in jsonData) {
-      var post_id = jsonData[i].id;
-      var post_date = jsonData[i].date;
-      var post_date_jp = post_date.substring(0, post_date.indexOf('T'));
-      post_date_jp = post_date_jp.split('-');
-      post_date_jp = post_date_jp[0] + '年' + post_date_jp[1] + '月' + post_date_jp[2] + '日';
-      var post_format = jsonData[i].format;
-      var post_status = jsonData[i].status;
-      var post_type = jsonData[i].type;
-      var post_category = jsonData[i].categories[0];
-      var post_title = jsonData[i].title.rendered;
-      var post_content = jsonData[i].content.rendered;
-      var post_link = jsonData[i].link;
-      var post_thumbnail = jsonData[i]._embedded['wp:featuredmedia'] ? jsonData[i]._embedded['wp:featuredmedia'][0].source_url : '';
+		for (var i in jsonData) {
+			var post_id = jsonData[i].id;
+			var post_date = jsonData[i].date;
+			var post_date_jp = post_date.substring(0, post_date.indexOf('T'));
+			post_date_jp = post_date_jp.split('-');
+			post_date_jp = post_date_jp[0] + '年' + post_date_jp[1] + '月' + post_date_jp[2] + '日';
+			var post_format = jsonData[i].format;
+			var post_status = jsonData[i].status;
+			var post_type = jsonData[i].type;
+			var post_category = jsonData[i].categories[0];
+			var post_title = jsonData[i].title.rendered;
+			var post_content = jsonData[i].content.rendered;
+			var post_link = jsonData[i].link;
+			var post_thumbnail = jsonData[i]._embedded['wp:featuredmedia'] ? jsonData[i]._embedded['wp:featuredmedia'][0].source_url : '';
 
-      var postId = 'post-' + post_id;
-      var post_class = postId + ' format-' + post_format + ' status-' + post_status + ' type-' + post_type + ' category-' + post_category + ' post has-post-thumbnail hentry';
-      console.log(post_date);
-      postList.push(React.createElement(
-        'article',
-        { id: postId, className: post_class },
-        React.createElement(
-          'header',
-          { className: 'entry-header' },
-          React.createElement(
-            'div',
-            { className: 'entry-meta' },
-            React.createElement(
-              'span',
-              { className: 'screen-reader-text' },
-              '\u6295\u7A3F\u65E5:'
-            ),
-            React.createElement(
-              'a',
-              { href: 'http://demo1.rmd-demo.com/8/', rel: 'bookmark' },
-              React.createElement('time', { className: 'entry-date published', dateTime: post_date, dangerouslySetInnerHTML: { __html: post_date_jp } }),
-              React.createElement('time', { className: 'updated', dateTime: post_date, dangerouslySetInnerHTML: { __html: post_date_jp } })
-            )
-          ),
-          React.createElement(
-            'h3',
-            { className: 'entry-title' },
-            React.createElement(
-              'a',
-              { href: post_link, rel: 'bookmark' },
-              post_title
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'post-thumbnail' },
-          React.createElement(
-            'a',
-            { href: post_link },
-            React.createElement('img', { width: '1280', height: '720', src: post_thumbnail, className: 'attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image' })
-          )
-        ),
-        React.createElement('div', { className: 'entry-content', dangerouslySetInnerHTML: { __html: post_content } })
-      ));
-    }
-    return React.createElement(
-      'main',
-      { id: 'main', className: 'site-main', role: 'main' },
-      postList
-    );
-  }
+			var postId = 'post-' + post_id;
+			var post_class = postId + ' format-' + post_format + ' status-' + post_status + ' type-' + post_type + ' category-' + post_category + ' post has-post-thumbnail hentry';
+			console.log(post_date);
+			postList.push(React.createElement(
+				'article',
+				{ id: postId, className: post_class },
+				React.createElement(
+					'header',
+					{ className: 'entry-header' },
+					React.createElement(
+						'div',
+						{ className: 'entry-meta' },
+						React.createElement(
+							'span',
+							{ className: 'screen-reader-text' },
+							'\u6295\u7A3F\u65E5:'
+						),
+						React.createElement(
+							'a',
+							{ href: post_link, rel: 'bookmark' },
+							React.createElement('time', { className: 'entry-date published', dateTime: post_date, dangerouslySetInnerHTML: { __html: post_date_jp } }),
+							React.createElement('time', { className: 'updated', dateTime: post_date, dangerouslySetInnerHTML: { __html: post_date_jp } })
+						)
+					),
+					React.createElement(
+						'h3',
+						{ className: 'entry-title' },
+						React.createElement(
+							'a',
+							{ href: post_link, rel: 'bookmark' },
+							post_title
+						)
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'post-thumbnail' },
+					React.createElement(
+						_reactRouterDom.Link,
+						{ to: '/detail' },
+						React.createElement('img', { width: '1280', height: '720', src: post_thumbnail, className: 'attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image' })
+					)
+				),
+				React.createElement('div', { className: 'entry-content', dangerouslySetInnerHTML: { __html: post_content } })
+			));
+		}
+		return React.createElement(
+			'main',
+			{ id: 'main', className: 'site-main', role: 'main' },
+			postList
+		);
+	}
 });
 
 module.exports = PostItem;

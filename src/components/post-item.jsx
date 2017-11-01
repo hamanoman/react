@@ -1,5 +1,6 @@
 
 var React = require('react');
+import { BrowserRouter, Route, Link, browserHistory } from 'react-router-dom';
 
 var PostItem = React.createClass({
   render: function() {
@@ -28,7 +29,7 @@ var PostItem = React.createClass({
 					<header className="entry-header">
 						<div className="entry-meta">
 							<span className="screen-reader-text">投稿日:</span>
-							<a href="http://demo1.rmd-demo.com/8/" rel="bookmark">
+							<a href={post_link} rel="bookmark">
 								<time className="entry-date published" dateTime={post_date} dangerouslySetInnerHTML={{__html: post_date_jp}}></time>
 								<time className="updated" dateTime={post_date} dangerouslySetInnerHTML={{__html: post_date_jp}}></time>
 							</a>
@@ -39,9 +40,12 @@ var PostItem = React.createClass({
 					</header>
 
 					<div className="post-thumbnail">
-						<a href={post_link}>
+						<Link to="/detail">
 							<img width="1280" height="720" src={post_thumbnail} className="attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image"/>
-						</a>
+						</Link>
+						{ /* <a href={post_link}>
+							<img width="1280" height="720" src={post_thumbnail} className="attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image"/>
+						</a> */ }
 					</div>
 
 					<div className="entry-content" dangerouslySetInnerHTML={{__html: post_content}}>

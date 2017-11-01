@@ -1,6 +1,10 @@
 React
 ・styleはキャメルケース記述
 ・class -> className
+・コメントアウト
+	{ /* <a href={post_link}>
+				<img width="1280" height="720" src={post_thumbnail} className="attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image"/>
+			</a> */ }
 
 ・ページ遷移
  →React Router

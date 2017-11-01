@@ -37,20 +37,27 @@ const Index = React.createClass({
   },
   render: function(){
     return (
-    	<div id="wrapper">
-				<Header/>
-				<Main jsonData={this.state.jsonData} />
+      <div id="wrapper">
+        <Header/>
+        <Main jsonData={this.state.jsonData} />
         <PageBottom/>
       </div>
     );
   }
 });
 
-const Detail = () => (
-  <div>
-    <h2>Detail</h2>
-  </div>
-);
+const Detail = React.createClass({
+  render: function(){
+    console.log(Index);
+    return (
+      <div id="wrapper">
+        <p>Detail</p>
+        <Footer/>
+        <PageBottom/>
+      </div>
+    );
+  }
+});
 
 const Root = () => (
   <BrowserRouter>

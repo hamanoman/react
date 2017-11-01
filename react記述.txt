@@ -11,3 +11,10 @@ React
 
 ・routerで404
  →https://blog.mismithportfolio.com/web/reactrouter-cannnotget
+
+
+
+
+
+※確認
+記事詳細ページのときのリンクは統一か、ユニークか

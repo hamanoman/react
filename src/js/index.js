@@ -9,7 +9,7 @@ import Main from './../components/main.jsx';
 import Footer from './../components/footer.jsx';
 import PageBottom from './../components/pagebottom.jsx';
 
-// import Detail from './../components/detail.jsx';
+import Detail from './../components/detail.jsx';
 
 //コンポーネントを一つにまとめる
 const Index = React.createClass({
@@ -21,7 +21,6 @@ const Index = React.createClass({
       cache: false,
       success: function(data) {
         this.setState({jsonData: data});
-        console.log(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -46,13 +45,34 @@ const Index = React.createClass({
   }
 });
 
-const Detail = React.createClass({
+const Details = React.createClass({
+  loadCommentsFromServer: function() {
+    var currentUrl = location.href;
+    var host = location.hostname;
+    host = 'http://' + host + '/';
+    var page = currentUrl.replace(host, '');
+    $.ajax({
+      url: url + page + '?_embed',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({jsonData: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  getInitialState: function(props) {
+    return {jsonData: []};
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+  },
   render: function(){
-    console.log(Index);
     return (
       <div id="wrapper">
-        <p>Detail</p>
-        <Footer/>
+        <Detail jsonData={this.state.jsonData} />
         <PageBottom/>
       </div>
     );
@@ -63,7 +83,7 @@ const Root = () => (
   <BrowserRouter>
     <div>
       <Route exact path="/" component={Index} />
-      <Route path="/detail" component={Detail} />
+      <Route path="/:id" component={Details} />
     </div>
   </BrowserRouter>
 );

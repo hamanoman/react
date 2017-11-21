@@ -19,28 +19,28 @@ var PostItem = React.createClass({
   		var post_title = jsonData[i].title.rendered;
   		var post_content = jsonData[i].content.rendered;
   		var post_link = jsonData[i].link;
+  				post_link = post_link.replace('http:/\/\demo1.rmd-demo.com', '');
   		var post_thumbnail = jsonData[i]._embedded['wp:featuredmedia'] ? jsonData[i]._embedded['wp:featuredmedia'][0].source_url : '';
 
   		var postId = 'post-' + post_id;
   		var post_class = postId + ' format-' + post_format + ' status-' + post_status + ' type-' + post_type + ' category-' + post_category + ' post has-post-thumbnail hentry';
-    	console.log(post_date);
 	    postList.push(
 	    	<article id={postId} className={post_class}>
 					<header className="entry-header">
 						<div className="entry-meta">
 							<span className="screen-reader-text">投稿日:</span>
-							<a href={post_link} rel="bookmark">
+							<a href={post_id} rel="bookmark">
 								<time className="entry-date published" dateTime={post_date} dangerouslySetInnerHTML={{__html: post_date_jp}}></time>
 								<time className="updated" dateTime={post_date} dangerouslySetInnerHTML={{__html: post_date_jp}}></time>
 							</a>
 						</div>
 						<h3 className="entry-title">
-							<a href={post_link} rel="bookmark">{post_title}</a>
+							<Link to={post_link} rel="bookmark">{post_title}</Link>
 						</h3>
 					</header>
 
 					<div className="post-thumbnail">
-						<Link to="/detail">
+						<Link to={post_link}>
 							<img width="1280" height="720" src={post_thumbnail} className="attachment-twentyseventeen-featured-image size-twentyseventeen-featured-image wp-post-image"/>
 						</Link>
 						{ /* <a href={post_link}>
